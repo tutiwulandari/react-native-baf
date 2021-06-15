@@ -1,47 +1,48 @@
 import React, {Component} from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
+import FlexExercise2 from './screen/FlexExercise2';
 
-class MainComponent extends Component {
+class App extends Component {
   render() {
-    var name = 'Wulan';
     return (
-      <ScrollView>
-        <View style={{width: 120, height: 100, backgroundColor: 'green'}}>
-          <Text>Hello, 1</Text>
+      <View style={{flex: 1}}>
+        <View style={styles.appBar}></View>
+        <View style={styles.mainContainer}>
+          <FlexExercise2 />
         </View>
-
-        <View style={{width: 120, height: 100, backgroundColor: 'red'}}>
-          <Text>Hello, 2</Text>
-        </View>
-
-        <View style={{width: 120, height: 100, backgroundColor: 'orange'}}>
-          <Text>Hello, 3 </Text>
-        </View>
-
-        <View style={{width: 120, height: 100, backgroundColor: 'blue'}}>
-          <Text>Hello, 4</Text>
-        </View>
-        <View style={{width: 120, height: 100, backgroundColor: 'violet'}}>
-          <Text>Hello, 5</Text>
-        </View>
-        <View style={{width: 120, height: 100, backgroundColor: 'black'}}>
-          <Text>Hello, 6</Text>
-        </View>
-        <View style={{width: 120, height: 100, backgroundColor: 'red'}}>
-          <Text>Hello, 7</Text>
-        </View>
-        <View style={{width: 120, height: 100, backgroundColor: 'green'}}>
-          <Text>Hello, 8</Text>
-        </View>
-      </ScrollView>
+        <View style={styles.bottomNavigation}></View>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 8,
+    alignItems: 'center',
+    backgroundColor: 'white',
+  },
+  appBar: {
+    flex: 1,
+    backgroundColor: 'orchid',
+  },
+  bottomNavigation: {
+    backgroundColor: 'darkviolet',
+  },
+  wrapContainer: {
+    margin: 5,
+    backgroundColor: 'powderblue',
+    flexWrap: 'wrap',
+  },
+
+  card: {
+    width: 100,
+    height: 50,
+    marginTop: 10,
+  },
   eventCard: {
     backgroundColor: 'crimson',
   },
 });
 
-export default MainComponent;
+export default App;
