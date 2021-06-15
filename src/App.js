@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import FlexExercise2 from './screen/FlexExercise2';
+import Home from './screen/Home';
+import Order from './screen/Order';
 
 class App extends Component {
   render() {
@@ -8,7 +9,8 @@ class App extends Component {
       <View style={{flex: 1}}>
         <View style={styles.appBar}></View>
         <View style={styles.mainContainer}>
-          <FlexExercise2 />
+          <Order />
+          {/* <Home /> */}
         </View>
         <View style={styles.bottomNavigation}></View>
       </View>
@@ -27,6 +29,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'orchid',
   },
   bottomNavigation: {
+    flex: 1, //full screen
     backgroundColor: 'darkviolet',
   },
   wrapContainer: {

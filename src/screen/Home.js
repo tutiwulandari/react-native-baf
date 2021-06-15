@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
 import EventCard from '../component/EventCard';
 
-export class FlexExercise2 extends Component {
+export class Home extends Component {
   state = {
     events: [
       'Coldplay Concert',
@@ -19,8 +19,8 @@ export class FlexExercise2 extends Component {
     return (
         <ScrollView style={styles.mainContainer}>
         {
-            this.state.events.map((title) => {
-                return (<EventCard eventName={title} key={title}/>)
+            this.state.events.map((title, index) => {
+                return (<EventCard eventName={title} key={index}/>)
             })
         }
      </ScrollView>
@@ -44,4 +44,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FlexExercise2;
+export default Home;

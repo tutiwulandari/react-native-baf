@@ -4,7 +4,12 @@ import {View, Text, StyleSheet} from 'react-native';
 const EventCard = props => {
   return (
     <View style={styles.eventCard}>
-      <Text style={styles.eventTitle}> {props.eventName}</Text>
+     <View style={{flex:1, backgroundColor:'black'}}>
+     <Text style={styles.eventTitle}> {props.eventName}</Text>
+     </View>
+    <View style={{flex:1}}>
+
+    </View>
     </View>
   );
 };
@@ -16,7 +21,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginHorizontal: 30,
     height: 160,
-    backgroundColor: 'black',
+    backgroundColor: 'cyan',
     borderRadius: 10,
     elevation: 10,
   },
