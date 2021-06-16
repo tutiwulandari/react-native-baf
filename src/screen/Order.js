@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Text, View, Image, StyleSheet, Button} from 'react-native';
 
 const Order = () => {
@@ -8,14 +8,20 @@ const Order = () => {
 
   const handleIncrement = () => {
     setCounter(counter + 1);
+    // updateSubTotal();
   };
 
   const handleDecrement = () => {
     setCounter(counter - 1);
+    // updateSubTotal();
   };
 
-  const handleSubTotal = () => {
-    setSubTotal({subTotal: price*counter})
+  // const updateSubTotal = () => {
+  //   setSubTotal(counter*price)
+  // }
+
+  useEffect = () => {
+    setSubTotal(counter*price)
   }
 
   return (
