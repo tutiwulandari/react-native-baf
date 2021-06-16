@@ -9,7 +9,7 @@ const EventCard = props => {
         <Text style={styles.eventTitle}> {props.eventName}</Text>
       </View>
       <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end'}}>
-        <Counter id={props.id} counter={props.counter}  handleIncrement={props.handleIncrement} handleDecrement={handleDecrement}/>
+        <Counter id={props.id} counter={props.counter}  handleIncrement={props.handleIncrement} handleDecrement={props.handleDecrement}/>
       </View>
     </View>
   );

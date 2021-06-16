@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Text, View, Button, StyleSheet} from 'react-native';
 
-const Counter = () => {
+const Counter = (props) => {
   const [counter, setCounter] = useState(0);
   const [subTotal, setSubTotal] = useState(0);
 
@@ -26,6 +26,7 @@ const Counter = () => {
           style={{borderRadius: 10}}
         />
       </View>
+      <Text style={{margin: 10, fontSize: 18}}>{props.counter}</Text>
       <View style={styles.button}>
         <Button
           title="+"
@@ -33,9 +34,6 @@ const Counter = () => {
             props.handleIncrement(props.id);
           }}
         />
-      </View>
-      <View style={styles.textNumber}>
-        <Text style={{margin: 10, fontSize: 18}}>{counter}</Text>
       </View>
     </View>
   );
