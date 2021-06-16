@@ -1,15 +1,19 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import Counter from './Counter';
+
 
 const EventCard = props => {
   return (
     <View style={styles.eventCard}>
-     <View style={{flex:1, backgroundColor:'black'}}>
+
+     <View style={{flex:1, backgroundColor:'black', height:10}}>
      <Text style={styles.eventTitle}> {props.eventName}</Text>
      </View>
-    <View style={{flex:1}}>
-
-    </View>
+     <View style={{textAlign:'right'}}>
+       <Counter counter={props.counter} />
+     </View>
+  
     </View>
   );
 };

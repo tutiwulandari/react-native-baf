@@ -3,20 +3,21 @@ import {StyleSheet, View, Text} from 'react-native';
 import Home from './screen/Home';
 import Order from './screen/Order';
 
-class App extends Component {
-  render() {
-    return (
-      <View style={{flex: 1}}>
-        <View style={styles.appBar}></View>
-        <View style={styles.mainContainer}>
-          <Order />
-          {/* <Home /> */}
-        </View>
-        <View style={styles.bottomNavigation}></View>
+const App = (props) => {
+  return (
+    <View style={{flex: 1}}>
+      <View style={styles.appBar}>
+        <Text> Sub Total : </Text>
       </View>
-    );
-  }
-}
+
+      <View style={styles.mainContainer}>
+        {/* <Order /> */}
+        <Home />
+      </View>
+      <View style={styles.bottomNavigation}></View>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -27,6 +28,7 @@ const styles = StyleSheet.create({
   appBar: {
     flex: 1,
     backgroundColor: 'orchid',
+    textAlign:'right'
   },
   bottomNavigation: {
     flex: 1, //full screen
@@ -34,7 +36,7 @@ const styles = StyleSheet.create({
   },
   wrapContainer: {
     margin: 5,
-    backgroundColor: 'powderblue',
+    backgroundColor: 'white',
     flexWrap: 'wrap',
   },
 
