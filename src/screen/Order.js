@@ -1,28 +1,23 @@
 import React, {useState, useEffect} from 'react';
 import {Text, View, Image, StyleSheet, Button} from 'react-native';
+import Counter from '../component/Counter';
 
 const Order = () => {
-  const [counter, setCounter] = useState(0);
   const price = 75000;
-  const [subTotal, setSubTotal] = useState(0)
+  const [subTotal, setSubTotal] = useState(0);
+  const [counter, setCounter] = useState(0);
 
   const handleIncrement = () => {
     setCounter(counter + 1);
-    // updateSubTotal();
   };
 
   const handleDecrement = () => {
     setCounter(counter - 1);
-    // updateSubTotal();
   };
 
-  // const updateSubTotal = () => {
-  //   setSubTotal(counter*price)
-  // }
-
-  useEffect = () => {
-    setSubTotal(counter*price)
-  }
+  useEffect(() => {
+    setSubTotal(counter * price);
+  });
 
   return (
     <View>
@@ -40,34 +35,16 @@ const Order = () => {
       <View style={styles.textPlacement}>
         <Text style={styles.price}> Price: Rp. {price}</Text>
       </View>
-      <View style={styles.counter}>
-        <View style={styles.button}>
-          <Button
-            title="-"
-            onPress={handleDecrement}
-            disabled={counter === 0}
-            color="#292961"
-            style={{borderRadius: 10}}
-          />
-        </View>
-        <View style={styles.textNumber}>
-          <Text style={{margin: 10, fontSize: 18}}>{counter}</Text>
-        </View>
-        <View style={styles.button}>
-          <Button title="+" onPress={handleIncrement} />
-        </View>
-      </View>
+      <Counter counter={counter}/>
 
       <View style={styles.textPlacement}>
-        <Text style={styles.total}>
-          Total Rp. {subTotal}
-        </Text>
+        <Text style={styles.total}>Total Rp. {subTotal}</Text>
       </View>
     </View>
   );
 };
 
-export default Order;
+
 
 const styles = StyleSheet.create({
   textPlacement: {
@@ -93,22 +70,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontFamily: 'sans-serif',
   },
-  counter: {
-    marginTop: 10,
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
   total: {
     textAlign: 'center',
     fontSize: 26,
     fontFamily: 'sans-serif',
   },
-  button: {
-    width: 50,
-  },
-  textNumber: {
-    fontSize: 26,
-    fontFamily: 'sans-serif',
-    fontWeight: 'bold',
-  },
 });
+
+
+export default Order;
