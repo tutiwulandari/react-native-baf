@@ -1,14 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import {Text, View, Button, StyleSheet} from 'react-native';
 
-
 const Counter = () => {
   const [counter, setCounter] = useState(0);
   const [subTotal, setSubTotal] = useState(0);
 
   const handleIncrement = () => {
     setCounter(counter + 1);
-
   };
 
   const handleDecrement = () => {
@@ -20,14 +18,21 @@ const Counter = () => {
       <View style={styles.button}>
         <Button
           title="-"
-          onPress={handleDecrement}
-          disabled={counter === 0}
+          onPress={() => {
+            props.handleDecrement(props.id);
+          }}
+          // disabled={counter === 0}
           color="#292961"
           style={{borderRadius: 10}}
         />
       </View>
       <View style={styles.button}>
-        <Button title="+" onPress={handleIncrement} />
+        <Button
+          title="+"
+          onPress={() => {
+            props.handleIncrement(props.id);
+          }}
+        />
       </View>
       <View style={styles.textNumber}>
         <Text style={{margin: 10, fontSize: 18}}>{counter}</Text>

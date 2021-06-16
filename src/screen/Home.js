@@ -1,33 +1,59 @@
-import React, {Component} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
 import EventCard from '../component/EventCard';
 
-export class Home extends Component {
-  state = {
-    events: [
-      'Coldplay Concert',
-      'Pidato Wak Brontok',
-      'We The Fest',
-      'Blazture',
-      'Smile Motion',
-      'Djakarta Warehouse Project',
-      'Japan Matsuri',
-    ],
+const Home = () => {
+  const [events, setEvent] = useState([
+    {id: 1, title: 'Coldplay Concert', counter: 0},
+    {id: 2, title: 'Pidato Wak Brontok', counter: 0},
+    {id: 3, title: 'We The Fest', counter: 0},
+    {id: 4, title: 'Blazture', counter: 0},
+    {id: 5, title: 'Smile Motion', counter: 0},
+    {id: 6, title: 'Djakarta Warehouse Project', counter: 0},
+    {id: 7, title: 'Japan Matsuri', counter: 0},
+  ]);
+
+  const handleIncrementById = id => {
+    setEvent(
+      events.map((event) => {
+        if(event.id === id) return {
+          ...event, counter: event.counter+1
+        }
+        return event;
+      })
+    )
   };
 
-  render() {
-    return (
-        <ScrollView style={styles.mainContainer}>
-        {
-            this.state.events.map((title, index) => {
-                return (<EventCard eventName={title} key={index}/>)
-            })
+  
+  const handleDecrementById = id => {
+    setEvent(
+      events.map((event) => {
+        if(event.id === id) return {
+          ...event, counter: event.counter-1
         }
-     </ScrollView>
-    );
-  }
-}
+        return event;
+      })
+    )
+  };
 
+
+  return (
+    <ScrollView style={styles.mainContainer}>
+      {events.map(event => {
+        return (
+          <EventCard
+            id={event.id}
+            eventName={event.title}
+            key={event.id}
+            counter={event.counter}
+            handleIncrement ={handleIncrementById}
+            handleDecrement={handleDecrementById}
+          />
+        );
+      })}
+    </ScrollView>
+  );
+};
 
 const styles = StyleSheet.create({
   mainContainer: {
