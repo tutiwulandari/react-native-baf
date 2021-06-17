@@ -62,7 +62,7 @@ const Order = ({route, navigation}) => {
       />
 
       <View style={{alignItems:'center', marginTop:30, marginBottom:40}}>
-      <TouchableOpacity style={styles.tombol} onPress={() => navigation.navigate('TicketList')}>
+      <TouchableOpacity style={styles.tombol} onPress={() => navigation.navigate('TicketList', {event:event, counter:counter})}>
         <Text style={styles.textTombol}> Checkout</Text>
       </TouchableOpacity>
       </View>
