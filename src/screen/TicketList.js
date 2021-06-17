@@ -11,7 +11,7 @@ const TicketList = ({route}) => {
     return (
         <View style={{backgroundColor:"powderblue", padding:70, margin:20}}>
             <View style={{alignItems:'flex-end'}}>
-                <QRCode value="https://timeline.coldplay.com/livetransmissions/262_med_20120602114957.jpg"/>
+                <QRCode value={event.imageUrl} style={{alignItems:"flex-start"}}/>
                 <Text >{event.eventName}</Text>
                 <Text>{route.params.counter} </Text>
                 <Text>{route.params.counter * event.ticketPrice} </Text>
