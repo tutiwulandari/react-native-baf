@@ -5,9 +5,12 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import Home from './screen/Home';
 import Order from './screen/Order';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import TicketList from './screen/TicketList';
+
 
 const App = () => {
   const Tab = createBottomTabNavigator();
+
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -17,14 +20,14 @@ const App = () => {
             let iconName;
             if (route.name == 'Home') {
               iconName = 'home';
-            } else if (route.name = 'Order') {
-              iconName = 'list';
+            } else if ((route.name = 'TicketList')) {
+              iconName = 'ticket-alt';
             }
             return <Icon name={iconName} size={size} color={color} />;
           },
         })}>
         <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Order" component={Order} />
+        <Tab.Screen name="TicketList" component={TicketList} />
       </Tab.Navigator>
     </NavigationContainer>
   );

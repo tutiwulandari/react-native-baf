@@ -1,15 +1,12 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
-
-
-const SubTotal = () => {
-
+const TicketList = () => {
     return (
         <View>
-            <Text> haloo</Text>
+            <Text>HALOOO INI TICKET LIST</Text>
         </View>
     )
 }
 
-export default SubTotal
+export default TicketList

@@ -1,45 +1,44 @@
-import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
 import EventCard from '../component/EventCard';
+import getAllEvent from '../rest-api/EventApi';
+import {createStackNavigator} from '@react-navigation/stack';
+import Order from './Order';
 
-const Home = () => {
+const EventListScreen = ({navigation}) => {
   const [events, setEvents] = useState([]);
 
-  // const handleIncrementById = id => {
-  //   setEvents(
-  //     events.map((event) => {
-  //       if(event.id === id) return {
-  //         ...event, counter: event.counter+1
-  //       }
-  //       return event;
-  //     })
-  //   )
-  // };
-
-  // const handleDecrementById = id => {
-  //   setEvents(
-  //     events.map((event) => {
-  //       if(event.id === id) return {
-  //         ...event, counter: event.counter-1
-  //       }
-  //       return event;
-  //     })
-  //   )
-  // };
-
-  useEffect(() => {
-    axios.get('http://10.0.2.2:8091/events').then(res => {
-      setEvents(res.data);
-    });
-  },[]);
+  useEffect(async () => {
+    const data = await getAllEvent();
+    setEvents(data);
+  }, []);
 
   return (
     <ScrollView style={styles.mainContainer}>
       {events.map(event => {
-        return <EventCard id={event.id} key={event.id} event={event} />;
+        return (
+          <EventCard
+            id={event.id}
+            key={event.id}
+            event={event}
+            navigation={navigation}
+            onPressHandler={() => navigation.navigate('Order')}
+          />
+        );
       })}
     </ScrollView>
+  );
+};
+
+const Home = () => {
+  const Stack = createStackNavigator();
+  return (
+    <Stack.Navigator
+      initialRouteName="EventListScreen"
+      screenOptions={{headerShown: 'false'}}>
+      <Stack.Screen name="EventListScreen" component={EventListScreen} />
+      <Stack.Screen name="Order" component={Order} />
+    </Stack.Navigator>
   );
 };
 

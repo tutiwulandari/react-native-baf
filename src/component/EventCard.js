@@ -1,9 +1,10 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 const EventCard = props => {
   return (
-    <View style={styles.eventCard}>
+   <TouchableOpacity onPress={props.onPressHandler}>
+      <View style={styles.eventCard}>
       <View style={{flex: 2, backgroundColor: 'black'}}>
         <Text style={styles.eventTitle}> {props.event.eventName}</Text>
       </View>
@@ -11,6 +12,7 @@ const EventCard = props => {
         <Text style={styles.eventTitle}>{props.event.ticketPrice}</Text>
       </View>
     </View>
+   </TouchableOpacity>
   );
 };
 
