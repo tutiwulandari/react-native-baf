@@ -1,21 +1,32 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import Home from './screen/Home';
 import Order from './screen/Order';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-const App = (props) => {
+const App = () => {
+  const Tab = createBottomTabNavigator();
   return (
-    <View style={{flex: 1}}>
-      <View style={styles.appBar}>
-        <Text> Sub Total : </Text>
-      </View>
-
-      <View style={styles.mainContainer}>
-        {/* <Order /> */}
-        <Home />
-      </View>
-      <View style={styles.bottomNavigation}></View>
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator
+        tabBarOptions={{activeTintColor: 'tomato', inactiveTintColor: 'gray'}}
+        screenOptions={({route}) => ({
+          tabBarIcon: ({focused, color, size}) => {
+            let iconName;
+            if (route.name == 'Home') {
+              iconName = 'home';
+            } else if (route.name = 'Order') {
+              iconName = 'list';
+            }
+            return <Icon name={iconName} size={size} color={color} />;
+          },
+        })}>
+        <Tab.Screen name="Home" component={Home} />
+        <Tab.Screen name="Order" component={Order} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 };
 
@@ -28,7 +39,7 @@ const styles = StyleSheet.create({
   appBar: {
     flex: 1,
     backgroundColor: 'orchid',
-    textAlign:'right'
+    textAlign: 'right',
   },
   bottomNavigation: {
     flex: 1, //full screen

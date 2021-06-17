@@ -21,7 +21,7 @@ const Counter = (props) => {
           onPress={() => {
             props.handleDecrement(props.id);
           }}
-          // disabled={counter === 0}
+          disabled={props.counter === 0}
           color="#292961"
           style={{borderRadius: 10}}
         />

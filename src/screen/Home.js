@@ -1,41 +1,46 @@
+import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet} from 'react-native';
 import EventCard from '../component/EventCard';
 
 const Home = () => {
-  const [events, setEvent] = useState([
-    {id: 1, title: 'Coldplay Concert', counter: 0},
-    {id: 2, title: 'Pidato Wak Brontok', counter: 0},
-    {id: 3, title: 'We The Fest', counter: 0},
-    {id: 4, title: 'Blazture', counter: 0},
-    {id: 5, title: 'Smile Motion', counter: 0},
-    {id: 6, title: 'Djakarta Warehouse Project', counter: 0},
-    {id: 7, title: 'Japan Matsuri', counter: 0},
+  const [events, setEvents] = useState([
+    {id: 1, title: 'Coldplay Concert'},
+    {id: 2, title: 'Pidato Wak Brontok'},
+    {id: 3, title: 'We The Fest'},
+    {id: 4, title: 'Blazture'},
+    {id: 5, title: 'Smile Motion'},
+    {id: 6, title: 'Djakarta Warehouse Project'},
+    {id: 7, title: 'Japan Matsuri'},
   ]);
 
-  const handleIncrementById = id => {
-    setEvent(
-      events.map((event) => {
-        if(event.id === id) return {
-          ...event, counter: event.counter+1
-        }
-        return event;
-      })
-    )
-  };
+  // const handleIncrementById = id => {
+  //   setEvents(
+  //     events.map((event) => {
+  //       if(event.id === id) return {
+  //         ...event, counter: event.counter+1
+  //       }
+  //       return event;
+  //     })
+  //   )
+  // };
 
-  
-  const handleDecrementById = id => {
-    setEvent(
-      events.map((event) => {
-        if(event.id === id) return {
-          ...event, counter: event.counter-1
-        }
-        return event;
-      })
-    )
-  };
+  // const handleDecrementById = id => {
+  //   setEvents(
+  //     events.map((event) => {
+  //       if(event.id === id) return {
+  //         ...event, counter: event.counter-1
+  //       }
+  //       return event;
+  //     })
+  //   )
+  // };
 
+  useEffect(() => {
+    axios.get('http://10.0.2.2:8091/events').then(res => {
+      setEvents(res.data);
+    });
+  });
 
   return (
     <ScrollView style={styles.mainContainer}>
@@ -46,7 +51,7 @@ const Home = () => {
             eventName={event.title}
             key={event.id}
             counter={event.counter}
-            handleIncrement ={handleIncrementById}
+            handleIncrement={handleIncrementById}
             handleDecrement={handleDecrementById}
           />
         );

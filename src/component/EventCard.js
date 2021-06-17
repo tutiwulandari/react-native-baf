@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import Counter from './Counter';
 
 const EventCard = props => {
   return (
@@ -9,7 +8,9 @@ const EventCard = props => {
         <Text style={styles.eventTitle}> {props.eventName}</Text>
       </View>
       <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end'}}>
-        <Counter id={props.id} counter={props.counter}  handleIncrement={props.handleIncrement} handleDecrement={props.handleDecrement}/>
+        <Text style={{}}>
+
+        </Text>
       </View>
     </View>
   );
