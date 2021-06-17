@@ -5,12 +5,10 @@ const EventCard = props => {
   return (
     <View style={styles.eventCard}>
       <View style={{flex: 2, backgroundColor: 'black'}}>
-        <Text style={styles.eventTitle}> {props.eventName}</Text>
+        <Text style={styles.eventTitle}> {props.event.eventName}</Text>
       </View>
       <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end'}}>
-        <Text style={{}}>
-
-        </Text>
+        <Text style={styles.eventTitle}>{props.event.ticketPrice}</Text>
       </View>
     </View>
   );

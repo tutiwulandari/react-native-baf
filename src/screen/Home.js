@@ -4,15 +4,7 @@ import {ScrollView, StyleSheet} from 'react-native';
 import EventCard from '../component/EventCard';
 
 const Home = () => {
-  const [events, setEvents] = useState([
-    {id: 1, title: 'Coldplay Concert'},
-    {id: 2, title: 'Pidato Wak Brontok'},
-    {id: 3, title: 'We The Fest'},
-    {id: 4, title: 'Blazture'},
-    {id: 5, title: 'Smile Motion'},
-    {id: 6, title: 'Djakarta Warehouse Project'},
-    {id: 7, title: 'Japan Matsuri'},
-  ]);
+  const [events, setEvents] = useState([]);
 
   // const handleIncrementById = id => {
   //   setEvents(
@@ -40,21 +32,12 @@ const Home = () => {
     axios.get('http://10.0.2.2:8091/events').then(res => {
       setEvents(res.data);
     });
-  });
+  },[]);
 
   return (
     <ScrollView style={styles.mainContainer}>
       {events.map(event => {
-        return (
-          <EventCard
-            id={event.id}
-            eventName={event.title}
-            key={event.id}
-            counter={event.counter}
-            handleIncrement={handleIncrementById}
-            handleDecrement={handleDecrementById}
-          />
-        );
+        return <EventCard id={event.id} key={event.id} event={event} />;
       })}
     </ScrollView>
   );
