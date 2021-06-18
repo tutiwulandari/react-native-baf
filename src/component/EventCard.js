@@ -5,7 +5,7 @@ const EventCard = props => {
   return (
    <TouchableOpacity onPress={props.onPressHandler}>
       <View style={styles.eventCard}>
-      <View style={{flex: 2, backgroundColor: 'black'}}>
+      <View style={{flex: 2, backgroundColor: 'pink', birderRadius:10}}>
         <Text style={styles.eventTitle}> {props.event.eventName}</Text>
       </View>
       <View style={{flex: 1, flexDirection: 'row', justifyContent: 'flex-end'}}>
@@ -22,14 +22,16 @@ const styles = StyleSheet.create({
   eventCard: {
     marginVertical: 10,
     marginHorizontal: 30,
-    height: 160,
+    height: 120,
     backgroundColor: 'cyan',
-    borderRadius: 10,
+    borderRadius: 15,
     elevation: 10,
   },
   eventTitle: {
     fontSize: 32,
     fontFamily: 'Conchin',
-    color: 'white',
+    color: 'black',
+    textAlign:'center',
+    elevation:10
   },
 });
