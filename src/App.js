@@ -20,7 +20,7 @@ const App = () => {
             let iconName;
             if (route.name == 'Home') {
               iconName = 'home';
-            } else if ((route.name = 'TicketList')) {
+            } else if ((route.name == 'TicketList')) {
               iconName = 'ticket-alt';
             }
             return <Icon name={iconName} size={size} color={color} />;
