@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import Counter from '../component/Counter';
 import {getEventById} from '../rest-api/EventApi';
+import {createTicket} from '../rest-api/TicketApi';
 
 const Order = ({route, navigation}) => {
   const {id} = route.params;
@@ -28,7 +29,7 @@ const Order = ({route, navigation}) => {
 
   const ticket = {
     event: {
-      id: event.id,
+      id: '',
     },
     ticketCount: counter,
     email: 'tutiw47@gmail.com',
@@ -51,13 +52,22 @@ const Order = ({route, navigation}) => {
     setEvent(event);
   }, [id]);
 
-  const onSubmitTicket = () => {
-    console.log('INI TIKET', ticket);
-    axios.post('http://10.0.2.2:8091/ticket', ticket).then(res => {
-      console.log(res)
-      Alert.alert('Tiket berhasil dibeli');
-      navigation.navigate('TicketList');
-    });
+  // const onSubmitTicket = () => {
+  //   ticket.event.id = event.id
+  //   console.log('INI TIKET', ticket);
+  //   axios.post('http://10.0.2.2:8091/ticket', ticket).then(res => {
+  //     console.log(res)
+  //     Alert.alert('Tiket berhasil dibeli');
+  //     navigation.goBack();
+  //   });
+  // };
+
+  const onSubmitTicket = async () => {
+    ticket.event.id = event.id;
+    console.log("INI TIKET", ticket)
+    const response = await createTicket(ticket);
+    Alert.alert("Response" + response)
+    navigation.goBack()
   };
 
   return (
