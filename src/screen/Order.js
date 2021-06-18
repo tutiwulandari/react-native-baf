@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {
   Text,
@@ -5,7 +6,9 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  Button,
+  Alert,
 } from 'react-native';
 import Counter from '../component/Counter';
 import {getEventById} from '../rest-api/EventApi';
@@ -22,6 +25,14 @@ const Order = ({route, navigation}) => {
     ticketPrice: 0,
     imageUrl: '',
   });
+
+  const ticket = {
+    event: {
+      id: event.id,
+    },
+    ticketCount: counter,
+    email: 'tutiw47@gmail.com',
+  };
 
   const handleIncrement = () => {
     setCounter(counter + 1);
@@ -40,13 +51,21 @@ const Order = ({route, navigation}) => {
     setEvent(event);
   }, [id]);
 
+  const onSubmitTicket = () => {
+    console.log('INI TIKET', ticket);
+    axios.post('http://10.0.2.2:8091/ticket', ticket).then(res => {
+      console.log(res)
+      Alert.alert('Tiket berhasil dibeli');
+      navigation.navigate('TicketList');
+    });
+  };
 
   return (
     <ScrollView>
       <View style={styles.imageBanner}>
         <Image
           style={{flex: 1, borderRadius: 10}}
-          source={{uri:event.imageUrl}}
+          source={{uri: event.imageUrl}}
         />
       </View>
       <View style={styles.textPlacement}>
@@ -61,10 +80,17 @@ const Order = ({route, navigation}) => {
         handleIncrement={handleIncrement}
       />
 
-      <View style={{alignItems:'center', marginTop:30, marginBottom:40}}>
-      <TouchableOpacity style={styles.tombol} onPress={() => navigation.navigate('TicketList', {event:event, counter:counter})}>
-        <Text style={styles.textTombol}> Checkout</Text>
-      </TouchableOpacity>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'center',
+          width: 500,
+          marginHorizontal: 20,
+          elevation: 10,
+          borderRadius: 10,
+          marginVertical: 20,
+        }}>
+        <Button onPress={onSubmitTicket} color="#292961" title={'Buy'} />
       </View>
     </ScrollView>
   );
@@ -103,10 +129,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#292961',
     padding: 10,
     borderRadius: 20,
-    elevation:20,
+    elevation: 20,
     marginTop: 10,
-    width:300,
-    alignContent:'space-around'
+    width: 300,
+    alignContent: 'space-around',
   },
   textTombol: {
     color: 'white',
